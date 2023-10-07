@@ -1,0 +1,24 @@
+jobs:
+  example_matrix:
+    strategy:
+      matrix:
+        version: [10, 12, 14]
+        include:
+          - version: 10
+            versionName: 'ten'
+            other: 'baz'
+          - version: 12
+            versionName: 'twelve'
+            other: 'foo'
+          - version: 14
+            versionName: 'fourteen'
+            other: 'bar'
+    runs-on: ubuntu-latest  # specify a default runner, or use ${{ matrix.os }} if os is part of your matrix
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.version }}
+      - name: Show the additional variables
+        run: |
+          echo Version Name: ${{ matrix.versionName }}
+          echo Other: ${{ matrix.other }}
