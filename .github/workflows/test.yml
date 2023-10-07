@@ -1,3 +1,7 @@
+on:
+  push:
+    branches:
+      - "**"
 jobs:
   example_matrix:
     strategy:
